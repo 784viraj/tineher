@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Valentine</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        height: 100vh;
+        background: radial-gradient(circle at top, #1b1b1b, #000);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #eaeaea;
+    }
+
+    .card {
+        background: #111;
+        border-radius: 18px;
+        padding: 40px 50px 50px;
+        width: 420px;
+        max-width: 90%;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin-bottom: 45px;
+    }
+
+    .buttons {
+        position: relative;
+        height: 90px;
+    }
+
+    button {
+        border: none;
+        padding: 12px 34px;
+        font-size: 1rem;
+        border-radius: 24px;
+        cursor: pointer;
+        transition: transform 0.15s ease;
+    }
+
+    #yes {
+        background: #ff3b6e;
+        color: #000;
+        box-shadow: 0 0 18px rgba(255,59,110,0.6);
+    }
+
+    #yes:hover {
+        transform: scale(1.08);
+    }
+
+    #no {
+        background: #2a2a2a;
+        color: #cfcfcf;
+        position: absolute;
+        left: 240px;
+        top: 20px;
+    }
+
+    .note {
+        margin-top: 28px;
+        font-size: 0.85rem;
+        opacity: 0.65;
+    }
+
+    .final {
+        display: none;
+    }
+
+    .final img {
+        width: 100%;
+        border-radius: 14px;
+        margin-bottom: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .final p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #ff9bb8;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>aamna may i be your valentine please?</h1>
+
+    <div class="buttons" id="box">
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+
+    <div class="note" id="note">No seems a bit shy</div>
+
+    <div class="final" id="final">
+        <!-- YOUR IMAGE IS HERE -->
+        <img src="https://instasize.com/p/d91cd4ff7be5f363248b24a4990ccb669ae4754ef064c99a34e8847ecb62341f" alt="valentine image">
+
+        <p>
+            i love u soo much aamna ur fhe best girlfirend ever im so glad i get to
+            spend valentines with someone as pretty as you ur the best thing that
+            has everrr happened to me like i cannot imagine not ever being with u
+            there is no universe in which i have not found u and if there is i feel
+            bad for the dude because u are one awesome girlfriend
+        </p>
+    </div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("no");
+    const box = document.getElementById("box");
+    const yesBtn = document.getElementById("yes");
+    const finalPage = document.getElementById("final");
+    const note = document.getElementById("note");
+
+    function moveNo() {
+        const boxRect = box.getBoundingClientRect();
+        const btnRect = noBtn.getBoundingClientRect();
+
+        const maxX = boxRect.width - btnRect.width;
+        const maxY = boxRect.height - btnRect.height;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+
+    document.addEventListener("mousemove", (e) => {
+        const rect = noBtn.getBoundingClientRect();
+        const distance = Math.hypot(
+            e.clientX - (rect.left + rect.width / 2),
+            e.clientY - (rect.top + rect.height / 2)
+        );
+
+        if (distance < 110) {
+            moveNo();
+        }
+    });
+
+    noBtn.addEventListener("touchstart", moveNo);
+
+    yesBtn.addEventListener("click", () => {
+        document.querySelector("h1").style.display = "none";
+        box.style.display = "none";
+        note.style.display = "none";
+        finalPage.style.display = "block";
+    });
+</script>
+
+</body>
+</html>
